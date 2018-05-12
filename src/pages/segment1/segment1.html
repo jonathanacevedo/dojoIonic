@@ -1,0 +1,49 @@
+
+<ion-header>
+</ion-header>
+
+
+<ion-content>
+    <div padding>
+        <ion-segment [(ngModel)]="pestanas">
+          <ion-segment-button value="users" (click)='downUsers()'>
+            Users
+          </ion-segment-button>
+          <ion-segment-button value="photos" (click)='downPhotos()'>
+            Photos
+          </ion-segment-button>
+        </ion-segment>
+      </div>
+      
+      <div [ngSwitch]="pestanas">
+        <ion-list *ngSwitchCase="'users'">
+            <ion-item *ngFor="let usuario of usuarios" >
+                <ion-card class='card'>
+                    <ion-card-header class='ion-card-header' >{{usuario.name}}</ion-card-header>
+                    <ion-card-content>
+                      <ion-list class='list' >
+                        <ion-item>
+                          Id: {{usuario.id}}
+                        </ion-item>
+                        <ion-item>
+                            Email: {{usuario.email}}
+                        </ion-item>
+                        <ion-item>
+                            Phone: {{usuario.phone}}
+                        </ion-item>
+                      </ion-list>
+                    </ion-card-content>
+                  </ion-card>
+            </ion-item>
+        </ion-list>
+      
+        <ion-list *ngSwitchCase="'photos'" no-lines>
+            <ion-item *ngFor="let photo of photos | slice:0:10" >
+                <ion-card  class='card' >
+                    <img src={{photo.url}}/>
+                  </ion-card>
+            </ion-item>
+        </ion-list>
+      </div>
+
+</ion-content>
